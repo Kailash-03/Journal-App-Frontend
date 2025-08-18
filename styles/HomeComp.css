@@ -1,0 +1,200 @@
+/* HomeComp.css */
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #fff;
+}
+
+.hero-section {
+  /* background: #f5f5f5; */
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Adjust as needed */
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+/* Add this for the overlay effect */
+.hero-image-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35); /* Adjust opacity as needed */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-overlay-content {
+  position: absolute;
+  top: 70%;
+  left: 5%;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 60%;
+  z-index: 2; /* Above the overlay */
+  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.hero-desc {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #f3f3f3;
+}
+
+.hero-section .get-started-btn {
+  background: #3887fe;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.hero-section .get-started-btn:hover {
+  background: #2563c9;
+}
+
+.key-features-section {
+  margin-bottom: 3rem;
+}
+
+.key-features-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.key-features-desc {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.features-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feature-card {
+  /* background: #f9f6f2; */
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5rem 1.2rem;
+  flex: 1 1 260px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 220px;
+}
+
+.feature-card img {
+  width: 100%;
+  /* max-width: 200px; */
+  height:200px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.feature-desc {
+  font-size: 1rem;
+  color: #666;
+}
+
+.cta-section {
+  text-align: center;
+  margin: 4rem 0 2rem 0;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.cta-desc {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.cta-section .cta-btn {
+  background: #3887fe;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cta-section .cta-btn:hover {
+  background: #2563c9;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 1.5rem 0 0 0;
+  color: #888;
+  font-size: 0.95rem;
+  border-top: 1px solid #eee;
+}
+
+.footer a {
+  color: #888;
+  text-decoration: none;
+  margin: 0 1.5rem;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: #3887fe;
+}

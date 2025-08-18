@@ -1,0 +1,50 @@
+import React, { useContext } from 'react'
+import '../styles/Header.css'
+import { Link } from 'react-router-dom'
+import { path, userContext } from '../src/App'  
+import toast from 'react-hot-toast'
+import axios from 'axios'
+
+
+
+const Header = () => {
+  const { isAuthenticated, setIsAuthenticated } = useContext(userContext);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(`${path}/user/logout`,{
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        }     
+      })
+
+      console.log("Logout successful:", response);
+      toast.success("Logout successful");
+      setIsAuthenticated(false);
+      // console.log(response);
+    } catch (error) {
+      console.log("Logout error:", error.response?.data?.error || error.message || error);
+      toast.error(error.response?.data?.error || "Some internal error occurred"); 
+    }
+  };
+  return (
+    <header className="header">
+      <div className="header-left">
+        <span className="logo-icon">◆</span>
+        <Link to="/" className="logo-text">Reflectly</Link>
+      </div>
+      <nav className="header-nav">
+      
+            <Link to="/journals" className="nav-link">My Journals</Link>
+            <Link to="/" className="nav-btn login-btn" onClick={handleLogout}>Logout</Link>
+            <Link to="/create-entry" className="nav-btn login-btn">Create Entries</Link>
+            <Link to="/signup" className="nav-btn signup-btn" >Signup</Link>
+            <Link to="/login" className="nav-btn login-btn">Login</Link>
+            {/* <Link to="/Entries" className="nav-btn user-details-btn">User Details</Link> */}
+      </nav>
+    </header>
+  )
+}
+
+export default Header

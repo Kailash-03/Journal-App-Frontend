@@ -1,0 +1,71 @@
+.create-entry-container {
+  max-width: 500px;
+  margin: 2.5rem auto;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.create-entry-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #222;
+  text-align: center;
+}
+
+.create-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create-entry-form label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-entry-form input,
+.create-entry-form textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #fafbfc;
+  margin-top: 0.5rem;
+  transition: border 0.2s;
+}
+
+.create-entry-form input:focus,
+.create-entry-form textarea:focus {
+  border: 1.5px solid #3887fe;
+  outline: none;
+}
+
+.create-entry-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.create-entry-btn {
+  background: #3887fe;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.create-entry-btn:hover {
+  background: #2563c9;
+}

@@ -1,0 +1,162 @@
+.create-entry-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.create-entry-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.create-entry-form input,
+.create-entry-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fafbfc;
+}
+.create-entry-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.create-entry-btn {
+  background: #3887fe;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+.create-entry-btn:hover {
+  background: #2563c9;
+}
+.new-entry-page {
+  min-height: 100vh;
+  background: #fff;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #222;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+.close-btn:hover {
+  color: #3887fe;
+}
+.new-entry-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.new-entry-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.new-entry-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 350px;
+  width: 400px;
+  margin-top: 1.5rem;
+}
+.calendar-wrapper {
+  margin-top: 1.5rem;
+  /* Optional: shrink calendar size */
+}
+.calendar-wrapper .react-calendar {
+  border: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+}
+.react-calendar__navigation button {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #222;
+  background: none;
+}
+.react-calendar__tile--active,
+.react-calendar__tile--now {
+  background: #dbeafe !important;
+  color: #222 !important;
+  border-radius: 50%;
+}
+.react-calendar__tile:enabled:hover {
+  background: #e0e7ef !important;
+  color: #222 !important;
+  border-radius: 50%;
+}
+.entry-brief-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: #fafbfc;
+  margin-bottom: 1.5rem;
+  color: #444;
+  outline: none;
+}
+.entry-brief-input::placeholder {
+  color: #a0aec0;
+  font-size: 1.1rem;
+}
+.entry-textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  background: #fafbfc;
+  margin-bottom: 2.5rem;
+  color: #444;
+  resize: vertical;
+  outline: none;
+}
+.entry-textarea::placeholder {
+  color: #a0aec0;
+  font-size: 1.1rem;
+}
+.entry-save-btn {
+  background: #dbeafe;
+  color: #222;
+  border: none;
+  border-radius: 16px;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  align-self: flex-end;
+  transition: background 0.2s;
+}
+.entry-save-btn:hover {
+  background: #3887fe;
+  color: #fff;
+}
