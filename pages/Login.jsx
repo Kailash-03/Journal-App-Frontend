@@ -24,7 +24,7 @@ const Login = () => {
       setIsAuthenticated(true);
       console.log("Login successful:", response.data);
       toast.success("Login successful");
-      <navigate to="/" />; 
+      // <navigate to="/" />; 
     } catch (error) {
       console.log("Login error:", error.response?.data?.error || error.message || error);
       toast.error(error.response?.data?.error || "Some internal error occurred");
@@ -36,7 +36,7 @@ const Login = () => {
   }
 
   if(isAuthenticated) {
-    return <Navigate to="/userDetails" />;
+    return <Navigate to="/journals" />;
   }
   return (
     <div className="login-page">

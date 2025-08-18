@@ -44,32 +44,30 @@ const CreateEntry = () => {
       >
         &#10005;
       </button>
-      <div className="entry-flex-wrapper">
-        <div className="calendar-wrapper">
+      <form className="new-entry-form-vertical" onSubmit={handleSubmit}>
+        <div className="calendar-wrapper-vertical">
           <Calendar
             onChange={setDate}
             value={date}
           />
         </div>
-        <form className="new-entry-form" onSubmit={handleSubmit}>
-          <input
-            className="entry-brief-input"
-            type="text"
-            placeholder="Title"
-            value={brief}
-            onChange={e => setBrief(e.target.value)}
-            required
-          />
-          <textarea
-            className="entry-textarea"
-            placeholder="Start writing..."
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            required
-          />
-          <button type="submit" className="entry-save-btn">Save</button>
-        </form>
-      </div>
+        <input
+          className="entry-brief-input"
+          type="text"
+          placeholder="Title"
+          value={brief}
+          onChange={e => setBrief(e.target.value)}
+          required
+        />
+        <textarea
+          className="entry-textarea"
+          placeholder="Start writing..."
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          required
+        />
+        <button type="submit" className="entry-save-btn-vertical">Save</button>
+      </form>
     </div>
   )
 }
