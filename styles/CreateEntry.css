@@ -115,6 +115,11 @@
   color: #222 !important;
   border-radius: 50%;
 }
+.react-calendar__tile--now:not(.react-calendar__tile--active) {
+  background: none !important;
+  color: inherit !important;
+  border-radius: 50%;
+}
 .react-calendar__tile:enabled:hover {
   background: #e0e7ef !important;
   color: #222 !important;

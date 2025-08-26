@@ -41,7 +41,6 @@ const Header = () => {
             <Link to="/create-entry" className="nav-btn login-btn">Create Entries</Link>
             <Link to="/signup" className="nav-btn signup-btn" >Signup</Link>
             <Link to="/login" className="nav-btn login-btn">Login</Link>
-            {/* <Link to="/Entries" className="nav-btn user-details-btn">User Details</Link> */}
       </nav>
     </header>
   )

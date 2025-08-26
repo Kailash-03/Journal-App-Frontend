@@ -13,6 +13,7 @@ const CreateEntry = () => {
   const [date, setDate] = useState(new Date())
   const [brief, setBrief] = useState('')
   const [description, setDescription] = useState('')
+  const [score, setScore] = useState(0);
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -25,7 +26,8 @@ const CreateEntry = () => {
       await axios.post(`${path}/entry/createEntry`, {
         brief,
         description,
-        date: date.toISOString().split('T')[0]
+        date: date.toISOString().split('T')[0],
+        score
       }, { withCredentials: true })
       toast.success("Entry created successfully!")
       navigate('/journals')
@@ -65,6 +67,15 @@ const CreateEntry = () => {
           value={description}
           onChange={e => setDescription(e.target.value)}
           required
+        />
+        <input
+          className="entry-brief-input"
+          type="number"
+          placeholder="How was your day? (0-10)"
+          value={score}
+          onChange={e => setScore(e.target.value)}
+          min={0}
+          max={10}
         />
         <button type="submit" className="entry-save-btn-vertical">Save</button>
       </form>
