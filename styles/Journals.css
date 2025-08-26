@@ -42,6 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .journal-img {
@@ -50,6 +51,38 @@
   object-fit: cover;
   border-radius: 12px;
   background: #fff;
+}
+
+.journal-action-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.icon-btn {
+  /* background: #fff; */
+  border: none;
+  border-radius: 50%;
+  padding: 0.3rem;
+  box-shadow: 0 1px 4px rgba(56,135,254,0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.icon-btn:hover {
+  /* background: #f0f4ff; */
+  box-shadow: 0 2px 8px rgba(56,135,254,0.15);
+}
+
+.icon-btn svg {
+  display: block;
 }
 
 .journal-date {

@@ -113,7 +113,7 @@
 .react-calendar__tile--now {
   background: #dbeafe !important;
   color: #222 !important;
-  border-radius: 50%;
+  border-radius: 15%;
 }
 .react-calendar__tile--now:not(.react-calendar__tile--active) {
   background: none !important;
@@ -187,7 +187,7 @@
   font-weight: 600;
   cursor: pointer;
   margin-top: 1rem;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   /* align-self: flex-end; */
   transition: background 0.2s;
 }

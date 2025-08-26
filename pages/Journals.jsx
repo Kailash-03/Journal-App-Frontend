@@ -16,8 +16,10 @@ const Journals = () => {
   const { isAuthenticated } = useContext(userContext)
   const [refresh, setRefresh] = useState(false)
   const [EntryList, setEntryList] = useState([])
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
+    setLoading(true); // <-- Add this line
     axios.get(`${path}/entry/getAllMyEntries`, {
       withCredentials: true
     })
@@ -26,6 +28,7 @@ const Journals = () => {
         console.error("Error fetching entries:", error)
         setEntryList([])
       })
+      .finally(() => setLoading(false));
   }, [isAuthenticated, refresh])
 
 
@@ -48,6 +51,33 @@ const Journals = () => {
         alert("Failed to fetch entry for editing.");
       });
   }
+
+  const handleDelete = (id) => () => {
+    if (!window.confirm("Are you sure you want to delete this entry?")) return;
+    setLoading(true);
+    axios.delete(`${path}/entry/${id}`, {
+      withCredentials: true
+    })
+      .then(response => {
+        if (response.data.status) {
+          setEntryList(prev => prev.filter(entry => entry._id !== id));
+        } else {
+          alert(response.data.message || "Failed to delete entry.");
+        }
+      })
+      .catch(error => {
+        console.error("Error deleting entry:", error);
+        alert("Failed to delete entry.");
+      })
+      .finally(() => setLoading(false));
+  };
+
+    if (loading) {
+    return <div style={{textAlign: "center", marginTop: "3rem"}}>Loading...</div>;
+  }
+
+
+
 return (
   <div className="journals-page">
     <h1 className="journals-title">My Journal</h1>
@@ -58,20 +88,37 @@ return (
         EntryList.map((entry, idx) => (
 
           <div className="journal-card" key={entry._id}>
-            <div className="journal-img-wrap">
+            <div className="journal-img-wrap" style={{ position: "relative" }}>
               <img
                 src={placeholderImages[idx % placeholderImages.length]}
                 alt="journal visual"
                 className="journal-img"
               />
+              <div className="journal-action-icons">
+                <Link to={`/edit/${entry._id}`} className="icon-btn" title="Edit">
+                  {/* Pencil SVG */}
+                  <svg width="22" height="22" fill="none" stroke="#3887fe" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M12 20h9" />
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19.5 3 21l1.5-4L16.5 3.5z" />
+                  </svg>
+                </Link>
+                <button onClick={handleDelete(entry._id)} className="icon-btn" title="Delete">
+                  {/* Bin SVG */}
+                  <svg width="22" height="22" fill="none" stroke="#d32f2f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <polyline points="3 6 5 6 21 6" />
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+                    <line x1="10" y1="11" x2="10" y2="17" />
+                    <line x1="14" y1="11" x2="14" y2="17" />
+                  </svg>
+                </button>
+              </div>
             </div>
-              <div><strong>Date:</strong> {entry.date}</div>
-              <div><strong>Brief:</strong> {entry.brief}</div>
-              <div><strong>Description:</strong> {entry.description}</div>
-              <div><strong>Score:</strong> {entry.score}</div>
-              <div><strong>Sentiment Score:</strong> {entry.sentimentScore}</div>
-              <div><strong>Mood:</strong> {entry.mood}</div>
-              <Link to={`/edit/${entry._id}`} className='journal buttons'>Edit</Link>
+            <div><strong>Date:</strong> {entry.date}</div>
+            <div><strong>Brief:</strong> {entry.brief}</div>
+            <div><strong>Description:</strong> {entry.description}</div>
+            <div><strong>Score:</strong> {entry.score}</div>
+            <div><strong>Sentiment Score:</strong> {entry.sentimentScore}</div>
+            <div><strong>Mood:</strong> {entry.mood}</div>
           </div>
 
         ))

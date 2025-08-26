@@ -43,11 +43,6 @@ const EditEntry = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!isAuthenticated) {
-      toast.error("Please login to create an entry.");
-      navigate('/login');
-      return;
-    }
     try {
       await axios.put(`${path}/entry/${id}`, {
         brief,
