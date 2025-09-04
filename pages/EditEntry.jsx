@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { path,userContext } from '../src/App'
+import { path,userContext } from '../src/main'
 import { useNavigate, useParams} from 'react-router-dom'
 import toast from 'react-hot-toast'
 import axios from 'axios'
@@ -13,7 +13,7 @@ const EditEntry = () => {
   const [brief, setBrief] = useState('');
   const [description, setDescription] = useState('');
   const [score, setScore] = useState(0);
-  const { isAuthenticated } = useContext(userContext);
+  // const { isAuthenticated } = useContext(userContext);
   const navigate = useNavigate();
 
   // Add a loading state

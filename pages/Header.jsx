@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import '../styles/Header.css'
 import { Link } from 'react-router-dom'
-import { path, userContext } from '../src/App'  
+import { path, userContext } from '../src/main'  
 import toast from 'react-hot-toast'
 import axios from 'axios'
 
@@ -35,12 +35,20 @@ const Header = () => {
         <Link to="/" className="logo-text">Reflectly</Link>
       </div>
       <nav className="header-nav">
-      
+        {isAuthenticated ? (
+          // Navigation for authenticated users
+          <>
             <Link to="/journals" className="nav-link">My Journals</Link>
-            <Link to="/" className="nav-btn login-btn" onClick={handleLogout}>Logout</Link>
+            <button onClick={handleLogout} className="nav-btn login-btn">Logout</button>
             <Link to="/create-entry" className="nav-btn login-btn">Create Entries</Link>
-            <Link to="/signup" className="nav-btn signup-btn" >Signup</Link>
+          </>
+        ) : (
+          // Navigation for unauthenticated users
+          <>
+            <Link to="/signup" className="nav-btn signup-btn">Signup</Link>
             <Link to="/login" className="nav-btn login-btn">Login</Link>
+          </>
+        )}
       </nav>
     </header>
   )

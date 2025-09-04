@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import "../styles/Login.css";
 import axios from "axios";  
-import { useNavigate, Navigate } from "react-router-dom";   
+import { Navigate } from "react-router-dom";   
 import toast from "react-hot-toast";
-import { path, userContext } from "../src/App";
+import { path, userContext } from "../src/main";
 
 const Login = () => {
   const {isAuthenticated, setIsAuthenticated} = useContext(userContext);

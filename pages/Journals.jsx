@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { path, userContext } from '../src/App'
+import { path, userContext } from '../src/main'
 import axios from 'axios'
 import '../styles/Journals.css'
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const placeholderImages = [
 
 const Journals = () => {
   const { isAuthenticated } = useContext(userContext)
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, SetRefresh] = useState(false)
   const [EntryList, setEntryList] = useState([])
   const [loading, setLoading] = useState(true); 
 
