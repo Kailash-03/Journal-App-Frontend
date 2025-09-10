@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import "../styles/Login.css";
 import axios from "axios";  
-import { Navigate } from "react-router-dom";   
 import toast from "react-hot-toast";
 import { path, userContext } from "../src/main";
 
@@ -9,9 +8,11 @@ const Login = () => {
   const {isAuthenticated, setIsAuthenticated} = useContext(userContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [processing,setProcessing] = useState(false);
   
   const handleLogin = async (e)=>{
       e.preventDefault();
+      setProcessing(true);
     try {
       const response = await axios.post(`${path}/user/loginUser`,{
         email,password
@@ -22,22 +23,20 @@ const Login = () => {
       });
 
       setIsAuthenticated(true);
+      setProcessing(false);
       console.log("Login successful:", response.data);
       toast.success("Login successful");
-      // <navigate to="/" />; 
     } catch (error) {
       console.log("Login error:", error.response?.data?.error || error.message || error);
       toast.error(error.response?.data?.error || "Some internal error occurred");
       setIsAuthenticated(false);
+      setProcessing(false);
     }
 
     setEmail("");
     setPassword("");    
   }
 
-  if(isAuthenticated) {
-    return <Navigate to="/journals" />;
-  }
   return (
     <div className="login-page">
       <main className="login-main">
@@ -67,7 +66,7 @@ const Login = () => {
             <input type="checkbox" id="remember" />
             <label htmlFor="remember">Remember me</label>
           </div>
-          <button type="submit" className="pagelogin-btn">Login</button>
+          <button type="submit" disabled={processing} className="pagelogin-btn">Login</button>
         </form>
         <div className="login-links">
           <a href="/signup" className="login-link">Don't have an account? Sign up</a>

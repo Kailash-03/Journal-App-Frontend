@@ -3,6 +3,7 @@ import { path, userContext } from '../src/main'
 import axios from 'axios'
 import '../styles/Journals.css'
 import { Link } from 'react-router-dom';
+import LineChart from './ChartComp';
 
 const placeholderImages = [
   "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
@@ -17,6 +18,9 @@ const Journals = () => {
   const [refresh, SetRefresh] = useState(false)
   const [EntryList, setEntryList] = useState([])
   const [loading, setLoading] = useState(true); 
+  const [dateOption, setDateOption] = useState('weekly');
+  const [graphLabels, setGraphLabels] = useState([]);
+  const [graphData, setGraphData] = useState([]);
 
   useEffect(() => {
     setLoading(true); // <-- Add this line
@@ -30,6 +34,71 @@ const Journals = () => {
       })
       .finally(() => setLoading(false));
   }, [isAuthenticated, refresh])
+
+  useEffect(() => {
+    const endDate = new Date(Date.now());
+    let StartDate = new Date(Date.now());
+
+    if (dateOption === 'weekly') {
+      StartDate.setDate(endDate.getDate() - 7);
+    } else if (dateOption === 'monthly') {
+      StartDate.setMonth(endDate.getMonth() - 1);
+    } else if (dateOption === 'yearly') {
+      StartDate.setFullYear(endDate.getFullYear() - 1);
+    }
+
+    const formattedStartDate = StartDate.toISOString().split('T')[0];
+    const formattedEndDate = endDate.toISOString().split('T')[0];
+
+    const labels = [];
+    const data = [];
+    axios.get(`${path}/entry/getEntriesByDateRange`, {
+      params: {
+        startDate: formattedStartDate,
+        endDate: formattedEndDate
+      },
+      withCredentials: true
+    })
+      .then(response => {
+        console.log("=== DEBUG: API CALL SUCCESS ===");
+        console.log("Full API Response:", response);
+        console.log("Response data:", response.data);
+        console.log("Response data.data:", response.data.data);
+        console.log("typeof response.data.data:", typeof response.data.data);
+        
+        // Force it to be an array no matter what
+        let entries = [];
+        if (response.data && response.data.data && Array.isArray(response.data.data)) {
+          entries = response.data.data;
+        } else {
+          console.error("API response structure is not as expected:", response.data);
+          entries = [];
+        }
+        
+        console.log("Final entries array:", entries);
+        console.log("entries.length:", entries.length);
+        
+        // Clear previous data
+        labels.length = 0;
+        data.length = 0;
+        
+        entries.forEach(entry => {
+          labels.push(entry.date);
+          data.push(entry.sentimentScore);
+        });
+
+        console.log("Graph Data:", { labels, data });
+        setGraphLabels([...labels]);
+        setGraphData([...data]);
+      })
+      .catch(error => {
+        console.error("Error fetching date range entries:", error);
+        setGraphLabels([]);
+        setGraphData([]);
+      });
+      
+      
+  }, [dateOption]);
 
 
   const HandleEdit = (date) => () => {
@@ -79,7 +148,32 @@ const Journals = () => {
 
 
 return (
+  !isAuthenticated?
+  <>
   <div className="journals-page">
+    <h1 className="journals-title">My Journal</h1>
+    <div className="no-journals-msg">Please log in to view your journal entries.</div>
+  </div>
+  </> :
+  <>
+  <div className="journals-page">
+  <div className='graph-container'>
+    <h2> select date:</h2>
+    <select value = {dateOption} onChange={(e)=>{setDateOption(e.target.value)
+    }}>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
+      <option value="yearly">Yearly</option>
+    </select>
+
+    {graphLabels.length > 0 && (
+      <LineChart
+        labels={graphLabels}
+        dataPoints={graphData}
+        title="Your Sentiment Over Time"
+      />
+    )}
+  </div>
     <h1 className="journals-title">My Journal</h1>
     <div className="journals-list">
       {EntryList.length === 0 ? (
@@ -125,7 +219,9 @@ return (
       )}
     </div>
   </div>
+  </>
 )
+
 }
 
 export default Journals
