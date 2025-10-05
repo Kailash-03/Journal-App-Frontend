@@ -34,6 +34,8 @@ function App() {
         });
         if (response.status === 200) {
           setIsAuthenticated(true);
+
+          
         }
       } catch (error) {
         setIsAuthenticated(false);

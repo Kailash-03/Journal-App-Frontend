@@ -33,7 +33,6 @@ const Entries = () => {
                 <div><strong>Brief:</strong> {entry.brief}</div>
                 <div><strong>Description:</strong> {entry.description}</div>
                 <div><strong>Score:</strong> {entry.score}</div>
-                <div><strong>Sentiment Score:</strong> {entry.sentimentScore}</div>
                 <div><strong>Mood:</strong> {entry.mood}</div>
               </li>
             ))}
