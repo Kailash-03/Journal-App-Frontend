@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import '../styles/Header.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { path, userContext } from '../src/main'  
 import toast from 'react-hot-toast'
 import axios from 'axios'
 
-
-
 const Header = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(userContext);
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -28,6 +27,7 @@ const Header = () => {
       toast.error(error.response?.data?.error || "Some internal error occurred"); 
     }
   };
+
   return (
     <header className="header">
       <div className="header-left">
@@ -38,9 +38,11 @@ const Header = () => {
         {isAuthenticated ? (
           // Navigation for authenticated users
           <>
-            <Link to="/journals" className="nav-link">My Journals</Link>
+            {/* Only show "My Journals" link if NOT on journals page */}
+            {location.pathname !== '/journals' && (
+              <Link to="/journals" className="nav-link">My Journals</Link>
+            )}
             <button onClick={handleLogout} className="nav-btn login-btn">Logout</button>
-            <Link to="/create-entry" className="nav-btn login-btn">Create Entries</Link>
           </>
         ) : (
           // Navigation for unauthenticated users

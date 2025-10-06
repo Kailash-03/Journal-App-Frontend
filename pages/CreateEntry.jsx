@@ -13,7 +13,7 @@ const CreateEntry = () => {
   const [date, setDate] = useState(new Date())
   const [brief, setBrief] = useState('')
   const [description, setDescription] = useState('')
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -23,12 +23,26 @@ const CreateEntry = () => {
       return
     }
     try {
-      await axios.post(`${path}/entry/createEntry`, {
+      // Create the base data object
+      const entryData = {
         brief,
         description,
-        date: date.toISOString().split('T')[0],
-        score
-      }, { withCredentials: true })
+        date: date.toISOString().split('T')[0]
+      };
+
+      // Only add score if user entered a value
+      if (score !== '' && score !== null && score !== undefined) {
+        const numericScore = Number(score);
+        if (!isNaN(numericScore) && numericScore >= 0 && numericScore <= 10) {
+          entryData.score = numericScore;
+        }
+      }
+
+      console.log('Sending data:', entryData); // Debug log
+
+      await axios.post(`${path}/entry/createEntry`, entryData, { 
+        withCredentials: true 
+      })
       toast.success("Entry created successfully!")
       navigate('/journals')
     } catch (err) {
@@ -71,11 +85,12 @@ const CreateEntry = () => {
         <input
           className="entry-brief-input"
           type="number"
-          placeholder="How was your day? (0-10)"
+          placeholder="How was your day? (0-10) - Optional"
           value={score}
           onChange={e => setScore(e.target.value)}
           min={0}
           max={10}
+          step={0.1}
         />
         <button type="submit" className="entry-save-btn-vertical">Save</button>
       </form>

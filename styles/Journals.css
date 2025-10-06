@@ -11,12 +11,22 @@
   color: #18181b;
 }
 
+.create-entry-btn{
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding-left: 90px;
+  padding-right: 90px;
+}
 .journals-list {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
+.create-Entry-container {
+  display: flex;
+  justify-content: center;
+}
 .journal-card {
   background: #f9f6f3;
   border-radius: 18px;
@@ -31,6 +41,9 @@
   transition: box-shadow 0.2s;
 }
 
+.journals-header {
+  margin: 10px 10px 50px 10px;
+}
 .journal-card:hover {
   box-shadow: 0 4px 16px rgba(56,135,254,0.08);
 }

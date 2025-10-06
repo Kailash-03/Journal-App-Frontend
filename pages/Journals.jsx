@@ -84,7 +84,7 @@ const Journals = () => {
         
         entries.forEach(entry => {
           labels.push(entry.date);
-          data.push(entry.sentimentScore);
+          data.push(entry.score);
         });
 
         console.log("Graph Data:", { labels, data });
@@ -174,7 +174,15 @@ return (
       />
     )}
   </div>
-    <h1 className="journals-title">My Journal</h1>
+
+   <div className="journals-header">
+          <h1 className="journals-title">My Journal</h1>
+          <div className="create-Entry-container">
+            <Link to="/create-entry" className="create-entry-btn">
+            Have Something in Mind? Journal It.
+          </Link>
+          </div>
+        </div>
     <div className="journals-list">
       {EntryList.length === 0 ? (
         <div className="no-journals-msg">No journal entries found.</div>
