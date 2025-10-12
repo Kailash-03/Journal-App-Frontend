@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../styles/signup.css";
+import "../styles/Signup.css";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import toast from "react-hot-toast";
