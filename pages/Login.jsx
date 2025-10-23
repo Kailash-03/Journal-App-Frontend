@@ -69,8 +69,8 @@ const Login = () => {
           <button type="submit" disabled={processing} className="pagelogin-btn">Login</button>
         </form>
         <div className="login-links">
-          <a href="/signup" className="login-link">Don't have an account? Sign up</a>
-          <a href="/forgot-password" className="login-link">Forgot password?</a>
+          <Link to="/signup" className="login-link">Don't have an account? Sign up</Link>
+          {/* <Link to="/forgot-password" className="login-link">Forgot password?</Link> */}
         </div>
       </main>
     </div>

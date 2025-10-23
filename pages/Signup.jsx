@@ -98,7 +98,7 @@ const Signup = () => {
           <button type="submit" className="pagelogin-btn">Sign Up</button>
         </form>
         <div className="login-links">
-          <a href="/login" className="login-link">Already have an account? Log In</a>
+          <Link to="/login" className="login-link">Already have an account? Log In</Link>
         </div>
       </main>
     </div>
